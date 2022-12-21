@@ -6,7 +6,7 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:46:27 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/18 11:38:13 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/21 11:49:11 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static char	**my_func(const char *s, char c, char **p)
 	return (p);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char  *s, char c)
 {
 	char	**p;
 
@@ -102,5 +102,7 @@ char	**ft_split(char const *s, char c)
 	p = (char **)malloc(sizeof(char *) * (ft_count(s, c) + 1));
 	if (!p)
 		return (NULL);
-	return (my_func(s, c, p));
+	my_func(s, c, p);
+	free(s);
+	return (p);
 }

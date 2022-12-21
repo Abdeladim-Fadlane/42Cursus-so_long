@@ -6,7 +6,7 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:31:46 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/18 14:57:37 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/21 22:43:19 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include"so_long.h"
 
 static char	**get_map(char *buff);
-void    putImage(t_object image);
+void    putImage(t_object *image);
 
-int	get_height(char **map)
+int	get_lenght(char **map)
 {
 	int	i;
 
@@ -26,78 +26,92 @@ int	get_height(char **map)
 	return (i);
 }
 
+int	key_hook(int keycode, t_object *object)
+{
+    printf("froom hook \n");
+	if (keycode == 2 || keycode == 124)
+	    ft_right(object);
+    else if (keycode == 0 || keycode == 123)
+		ft_left(object);
+    else if (keycode == 13 || keycode == 126)
+		ft_down(object);
+	else if (keycode == 1 || keycode == 125)
+		ft_up(object);
+    if (keycode == 53) 
+    {
+        mlx_destroy_window(object->mlx, object->win);
+        exit(0); 
+    }
+	return (0);
+    
+}
 int main(int ac ,char **av)
 {
     (void)av;
     t_object object;
+
     if(ac <= 1)
     { 
-        perror("\033[1;31mERROR \033[0m");
+        perror("ERROR");
         exit(0);
     }
     check_path(av[1]);
-    object.map = get_map(av[1]); 
-
+    object.map = get_map(av[1]);
+    checkElement(object.map);
+    check_map(object.map);
     int win_w = strlen(object.map[0]);
-    int win_h = get_height(object.map);
+    int win_h = get_lenght(object.map);
     if(object.map != NULL)
     {
 		object.mlx = mlx_init();
-		object.win = mlx_new_window(object.mlx,win_w * 50, win_h * 50,"So-Long");
-        putImage(object);
+		object.win = mlx_new_window(object.mlx,win_w * 40, win_h * 40,"So-Long");
+        putImage(&object);
+        mlx_hook(object.win, 2,0, key_hook, &object);
+        //mlx_key_hook(object.win, key_hook, &object);
+
     }
     mlx_loop(object.mlx);
 }
-void    putImage(t_object image)
+
+void    putImage(t_object *image)
 {
-    int x = 0;
-    int y = 0;
-    int img_height;
-    int img_width;
     int i = 0;
     int j = 0;
-    while(image.map[i])
+    image->x = 0;
+    image->y = 0;
+
+    while(image->map[i])
     { 
-        x = 0;
+        image->x = 0;
         j = 0;
-        while(image.map[i][j])
+        while(image->map[i][j])
         {
-            if(image.map[i][j] == '1')
+            if(image->map[i][j] == '1')
+                image->imgpath = "./textures/wall.xpm";
+            else if(image->map[i][j] == '0' )
+                image->imgpath = "./textures/bg.xpm"; 
+            else if(image->map[i][j] == 'C')
+                image->imgpath ="./textures/collection.xpm";
+            else if(image->map[i][j] == 'P')
             {
-                void *wall = mlx_xpm_file_to_image(image.mlx, "./textures/wall.xpm", &img_width,&img_height);
-                mlx_put_image_to_window(image.mlx, image.win, wall,x,y);
+                image->imgpath = "./textures/player.xpm";
+                image->player.y = i;
+                image->player.x = j;
             }
-            else if(image.map[i][j] == '0' )
+            else if(image->map[i][j] == 'E')
+                image->imgpath = "./textures/door.xpm";
+            if(image->map[i][j] == 'E' || image->map[i][j] == 'P' || image->map[i][j] == 'C')
             {
-                void *img = mlx_xpm_file_to_image(image.mlx, "./textures/bg.xpm",&img_width,&img_height); 
-                mlx_put_image_to_window(image.mlx, image.win, img, x, y);
+                image->ptr = mlx_xpm_file_to_image(image->mlx,"./textures/bg.xpm" ,&image->img_width,&image->img_height);
+                mlx_put_image_to_window(image->mlx, image->win, image->ptr, image->x,image->y);
             }
-            else if(image.map[i][j] == 'C')
-            {
-                void *img = mlx_xpm_file_to_image(image.mlx, "./textures/bg.xpm",&img_width,&img_height); 
-                mlx_put_image_to_window(image.mlx, image.win, img, x, y);
-                void *coll = mlx_xpm_file_to_image(image.mlx, "./textures/collection.xpm",&img_width,&img_height);
-                mlx_put_image_to_window(image.mlx, image.win, coll, x,y);
-            }
-            else if(image.map[i][j] == 'P')
-            {
-                void *img = mlx_xpm_file_to_image(image.mlx, "./textures/bg.xpm",&img_width,&img_height); 
-                mlx_put_image_to_window(image.mlx, image.win, img, x, y);
-                void *player = mlx_xpm_file_to_image(image.mlx, "./textures/player.xpm", &img_width,&img_height);
-                mlx_put_image_to_window(image.mlx, image.win, player, x,y);
-            }
-            else if(image.map[i][j] == 'E')
-            {
-                void *img = mlx_xpm_file_to_image(image.mlx, "./textures/bg.xpm",&img_width,&img_height); 
-                mlx_put_image_to_window(image.mlx, image.win, img, x, y);
-                void *exit = mlx_xpm_file_to_image(image.mlx, "./textures/door.xpm", &img_width,&img_height);
-                mlx_put_image_to_window(image.mlx, image.win, exit, x,y);
-            }
-            x+=50;
+            image->ptr = mlx_xpm_file_to_image(image->mlx,image->imgpath,&image->img_width,&image->img_height);
+            mlx_put_image_to_window(image->mlx, image->win, image->ptr, image->x,image->y);
+            image->x+=40;
             j++;
         }
         i++;
-        y+= 50;
+        image->y+= 40;
     } 
 }
 static char	**get_map(char *buff)
@@ -122,6 +136,5 @@ static char	**get_map(char *buff)
 		free(line);
 	}
 	free(line);
-	close(fd);
 	return (ft_split(all_lines, '\n'));
 }

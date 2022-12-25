@@ -6,7 +6,7 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:16:46 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/21 11:12:15 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/25 11:57:41 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int  check_collection(char **arr,int i,int j)
         }
         x++;
     }
+    
     return count;
 }
 int  check_antielement(char **arr,int i,int j)
@@ -84,10 +85,11 @@ int  check_antielement(char **arr,int i,int j)
     }
     return 1;
 }
-void checkElement(char **arr)
+void checkElement(char **arr,t_object *coin )
 {
     int i = 0;
     int j = 0;
+    
 	while (arr[i])
 	{
 		while (arr[i][j])
@@ -100,5 +102,6 @@ void checkElement(char **arr)
         printf("invalid map !");
         exit(1);
     }
+    coin->coins = check_collection(arr,i,j);
     return  ;
 }

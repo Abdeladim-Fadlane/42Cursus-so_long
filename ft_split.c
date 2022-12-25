@@ -6,12 +6,12 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:46:27 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/21 11:49:11 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/24 12:44:03 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char  *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*p;
@@ -32,7 +32,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	p[i] = '\0';
 	return (p);
 }
-static	int	ft_count(const char *s, char c)
+static	int	ft_count(char *s, char c)
 {
 	size_t	i;
 	int		count;
@@ -66,7 +66,7 @@ static char	**ft_free(char **s)
 	return (NULL);
 }
 
-static char	**my_func(const char *s, char c, char **p)
+static char	**my_func(char *s, char c, char **p)
 {
 	int		j;
 	int		k;

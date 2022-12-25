@@ -6,7 +6,7 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 09:58:10 by afadlane          #+#    #+#             */
-/*   Updated: 2022/11/16 13:16:32 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/24 12:42:11 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(const char *s);
+size_t	ft_strlen(char *s);
 char	*ft_strchr( char *p, int c);
 char	*ft_strdup(char *s1);
 #endif

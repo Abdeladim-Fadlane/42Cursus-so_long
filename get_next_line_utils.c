@@ -6,7 +6,7 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:32:57 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/24 11:53:52 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/26 10:27:17 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ size_t	ft_strlen(char *s)
 {
 	size_t	i;
 
-	if(!s)
-		return 0;
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i] != '\0')
 		i++;
@@ -67,8 +67,9 @@ char	*ft_strdup(char *s1)
 {
 	char	*p;
 	int		i;
-	if(!s1)
-		return NULL;
+
+	if (!s1)
+		return (NULL);
 	i = 0;
 	p = malloc(ft_strlen(s1) + 1);
 	if (!p)

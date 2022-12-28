@@ -6,7 +6,7 @@
 #    By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/14 10:15:21 by afadlane          #+#    #+#              #
-#    Updated: 2022/12/24 18:16:37 by afadlane         ###   ########.fr        #
+#    Updated: 2022/12/28 13:35:58 by afadlane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,11 @@ SRC = 	so_long.c \
 		check_ber.c \
 		checkelement.c \
 		ft_move.c	\
-		move_utils.c
+		move_utils.c \
+		so_long_utils.c \
+		ft_printf.c \
+		ft_printf_utils.c \
+		checkPath.c 
 cc = gcc
 
 all :${NAME}

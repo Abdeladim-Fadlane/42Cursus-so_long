@@ -6,12 +6,13 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:46:27 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/24 12:44:03 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/26 10:08:43 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
-char	*ft_substr(char  *s, unsigned int start, size_t len)
+
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*p;
@@ -32,6 +33,7 @@ char	*ft_substr(char  *s, unsigned int start, size_t len)
 	p[i] = '\0';
 	return (p);
 }
+
 static	int	ft_count(char *s, char c)
 {
 	size_t	i;
@@ -52,20 +54,6 @@ static	int	ft_count(char *s, char c)
 	return (count);
 }
 
-static char	**ft_free(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		free(s[i]);
-		i++;
-	}
-	free(s);
-	return (NULL);
-}
-
 static char	**my_func(char *s, char c, char **p)
 {
 	int		j;
@@ -82,8 +70,6 @@ static char	**my_func(char *s, char c, char **p)
 			while (s[i] != c && s[i])
 				i++;
 			p[j] = ft_substr(s, k, (i - k));
-			if (!p[j])
-				return (ft_free(p));
 			j++;
 		}
 		else
@@ -93,7 +79,7 @@ static char	**my_func(char *s, char c, char **p)
 	return (p);
 }
 
-char	**ft_split(char  *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**p;
 

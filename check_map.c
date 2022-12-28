@@ -6,71 +6,70 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:47:15 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/19 15:23:24 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/26 14:00:16 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
 
-static int check_wall1(char **av)
+static	int	check_wall1(char **av, int x, int y)
 {
-	int i = 0, x = 0, y = 0;
-	while (av[x])
+	int	i;
+
+	i = 0;
+	if (x >= y)
+		return (0);
+	while (av[0][i] != '\0')
 	{
-		while (av[x][y])
-			y++;
-		x++;
-	}
-	if(x >= y)
-		return 0;
-	while(av[0][i] != '\0')
-	{
-		if(av[0][i] != '1')
+		if (av[0][i] != '1')
 			return (0);
 		i++;
 	}
-	while(av[x-1][i])
+	while (av[x - 1][i])
 	{
-		if(av[x-1][i] != '1')
+		if (av[x - 1][i] != '1')
 			return (0);
 		i++;
 	}
-	return 1;
+	return (1);
 }
-static int check_wall(char **av)
+
+static	int	check_wall(char **av, int y)
 {
-	int i = 0, x = 0, y = 0;
-	while (av[x])
-	{
-		while (av[x][y])
-			y++;
-		x++;
-	}
-	
+	int	i;
+
 	i = 1;
-	while(av[i])
+	while (av[i])
 	{
-		if(av[i][0] != '1')
+		if (av[i][0] != '1')
 			return (0);
 		i++;
 	}
 	i = 0;
-	while(av[i])
+	while (av[i])
 	{
-		if(av[i][y-1] != '1')
+		if (av[i][y - 1] != '1')
 			return (0);
 		i++;
 	}
-	return 1;
+	return (1);
 }
 
-
-void check_map(char **av)
+void	check_map(char **av)
 {
-	int k = check_wall(av);
-	int j = check_wall1(av);
-	if(k && j )
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (av[x])
+	{
+		while (av[x][y])
+			y++;
+		x++;
+	}
+	if ((check_wall(av, y)) && (check_wall1(av, x, y)))
 		return ;
-	printf("invalid map!");
+	ft_printf("invalid map!");
 	exit(1);
 }

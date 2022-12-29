@@ -6,7 +6,7 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:16:46 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/26 14:06:11 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:46:51 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	checkelement(char **arr, t_object *coin)
 		|| (check_collection(arr, i, j) == 0)
 		|| (check_antielement(arr, i, j) == 0))
 	{
-		ft_printf("invalid map !");
+		ft_printf("Error invalid map!\nsomthing was wrong!");
 		exit(1);
 	}
 	coin->coins = check_collection(arr, i, j);

@@ -6,7 +6,7 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 13:50:15 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/28 17:36:05 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:47:41 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	floodfill(t_struct *map)
 		{
 			if (map->map[i][j] == 'C' || map->map[i][j] == 'E')
 			{
-				ft_printf("invalid map");
+				ft_printf("Error invalid map!\ncheck path!");
 				exit(0);
 			}
 			j++;

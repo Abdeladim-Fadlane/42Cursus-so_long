@@ -6,11 +6,25 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 15:13:48 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/28 11:42:49 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:58:17 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
+
+int	ft_close(t_object *object)
+{
+	mlx_destroy_window(object->mlx, object->win);
+	exit(1);
+}
+
+void	initialize(t_object *object)
+{
+	checkelement(object->map, object);
+	check_map(object->map);
+	object->win_w = ft_strlen(object->map[0]);
+	object->win_h = get_lenght(object->map);
+}
 
 char	**get_map(char *buff)
 {

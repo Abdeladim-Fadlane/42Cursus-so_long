@@ -6,7 +6,7 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 13:23:33 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/26 10:44:30 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:01:48 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	check_path(char *path)
 		}
 		path++;
 	}
-	perror("Error !");
+	perror("Error!");
 	exit(1);
 }

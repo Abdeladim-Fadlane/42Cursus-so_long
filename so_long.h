@@ -6,7 +6,7 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:34:52 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/28 17:42:49 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:57:56 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,6 @@ int		get_lenght(char **map);
 int		ft_printf(const char *s, ...);
 void	myfunction(t_object *object);
 void	myfunc(t_object *object);
+int		ft_close(t_object *object);
+void	initialize(t_object *object);
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:47:15 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/26 14:00:16 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:45:52 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ static	int	check_wall1(char **av, int x, int y)
 
 	i = 0;
 	if (x >= y)
-		return (0);
+	{
+		ft_printf("Error invalid map!\nMap should be rectangle");
+		exit(1);
+	}
 	while (av[0][i] != '\0')
 	{
 		if (av[0][i] != '1')
 			return (0);
 		i++;
 	}
+	i = 0;
 	while (av[x - 1][i])
 	{
 		if (av[x - 1][i] != '1')
@@ -70,6 +74,6 @@ void	check_map(char **av)
 	}
 	if ((check_wall(av, y)) && (check_wall1(av, x, y)))
 		return ;
-	ft_printf("invalid map!");
+	ft_printf("Error invalid map!\nckeck wall");
 	exit(1);
 }

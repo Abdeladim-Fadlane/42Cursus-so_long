@@ -6,7 +6,7 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 11:31:46 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/28 17:41:12 by afadlane         ###   ########.fr       */
+/*   Updated: 2022/12/29 14:02:18 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static	int	key_hook(int keycode, t_object *object)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(object->mlx, object->win);
-		exit(0);
+		exit(1);
 	}
 	return (0);
 }
@@ -88,16 +88,13 @@ int	main(int ac, char **av)
 
 	if (ac <= 1)
 	{
-		perror("ERROR");
+		perror("Error");
 		exit(0);
 	}
 	check_path(av[1]);
 	map.map = get_map(av[1]);
 	object.map = get_map(av[1]);
-	checkelement(object.map, &object);
-	check_map(object.map);
-	object.win_w = ft_strlen(object.map[0]);
-	object.win_h = get_lenght(object.map);
+	initialize(&object);
 	floodfill(&map);
 	if (object.map != NULL)
 	{
@@ -106,6 +103,7 @@ int	main(int ac, char **av)
 				object.win_h * 40, "So-Long");
 		putimage(&object);
 		mlx_hook(object.win, 2, 0, key_hook, &object);
-	}		
-	mlx_loop(object.mlx);
+		mlx_hook(object.win, 17, 0, ft_close, &object);
+		mlx_loop(object.mlx);
+	}
 }

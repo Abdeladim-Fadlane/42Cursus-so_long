@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkPath.c                                        :+:      :+:    :+:   */
+/*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 13:50:15 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/29 13:47:41 by afadlane         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:05:05 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static	void	check_exit(t_struct *object, int x, int y)
 	if (y < 0 || y >= object->win_y || x < 0 || x >= object->win_x
 		|| object->map[x][y] == 'E' || object->map[x][y] == '1')
 		return ;
-	object->map[x][y] = '*';
+	object->map[x][y] = '1';
 	check_exit(object, x - 1, y);
 	check_exit(object, x + 1, y);
 	check_exit(object, x, y - 1);

@@ -6,22 +6,17 @@
 /*   By: afadlane <afadlane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 14:47:15 by afadlane          #+#    #+#             */
-/*   Updated: 2022/12/29 13:45:52 by afadlane         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:43:06 by afadlane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"so_long.h"
 
-static	int	check_wall1(char **av, int x, int y)
+static	int	check_wall1(char **av, int x)
 {
 	int	i;
 
 	i = 0;
-	if (x >= y)
-	{
-		ft_printf("Error invalid map!\nMap should be rectangle");
-		exit(1);
-	}
 	while (av[0][i] != '\0')
 	{
 		if (av[0][i] != '1')
@@ -72,7 +67,7 @@ void	check_map(char **av)
 			y++;
 		x++;
 	}
-	if ((check_wall(av, y)) && (check_wall1(av, x, y)))
+	if ((check_wall(av, y)) && (check_wall1(av, x)))
 		return ;
 	ft_printf("Error invalid map!\nckeck wall");
 	exit(1);
